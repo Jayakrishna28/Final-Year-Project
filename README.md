@@ -1,146 +1,60 @@
-# Final-Year-Project
-🚀 Project Showcase: Artificial Intelligence Applications in Power Systems
+# ⚡ AI Applications in Power Systems 
 
-By A. S. Venkat Srinivas, B. Kowshik, A. Pavan, K. Jaya Krishna(Myself), K. Vikram Siddhardha | B.Tech, EEE – 2025 | Sri Venkateswara University College of Engineering, Tirupati
+## 🧾 Project Title
+**AI APPLICATIONS IN POWER SYSTEMS-Real-Time Intelligence using ENTSO-E Data**
 
-🔗 Supervised by Prof. M. Damodar Reddy, Department of EEE
+## 👨‍💻 Author
+**Kambala Jaya Krishna**  
+Department of Electrical and Electronics Engineering  
+**Sri Venkateswara University College of Engineering (SVUCE)**  
+📅 **Year**: 2025
 
-As the global energy ecosystem evolves with the integration of renewables, smart metering, and growing consumption demands, the need for intelligent, adaptive, and automated systems in power management has never been more pressing. Recognizing this, we embarked on our final-year B.Tech project titled:
+---
 
-"Artificial Intelligence Applications in Power Systems"
-A practical demonstration of how AI and ML can transform legacy electrical infrastructure into robust, smart, and future-ready systems.
+## 📘 Description
 
-🔍 Objective
-Our project explores four critical applications of Artificial Intelligence in the energy sector:
+This version of the project focuses on **real-time energy data analytics** using the **ENTSO-E API**. It integrates AI models for:
 
-Power Theft Detection
+- ⚠️ Outage prediction (XGBoost)
+- 🔮 Load forecasting (LSTM)
+- 🚨 Anomaly detection (Isolation Forest)
+- 📊 Feature engineering and preprocessing from time-stamped real data
 
-Load Forecasting
+The system is designed to help utility companies and grid operators **anticipate load fluctuations**, **detect failures**, and **improve demand-response strategies**.
 
-Load Balancing
+---
 
-Load Outage Prediction
+## 🔗 Real-Time Data Source
 
-Each module was independently designed, developed, and integrated using synthetic and real-world datasets, evaluated against standard ML/DL models like Random Forest, Isolation Forest, SVM, LSTM, and Prophet.
+- **ENTSO-E Transparency Platform API**
+  - Source: [https://transparency.entsoe.eu](https://transparency.entsoe.eu)
+  - Data includes: Actual load, solar generation, pricing (simulated in example)
 
-📌 Highlights
-1. Power Theft Detection
-Problem: Electricity theft contributes significantly to Non-Technical Losses (NTLs), especially in developing countries.
+> In this implementation, a simulated response is used for demonstration. Replace with your ENTSO-E API key and query when deploying.
 
-Our Solution:
+---
 
-Developed both supervised (Random Forest, SVM) and unsupervised (Isolation Forest) models.
+## 🛠️ Functional Overview
 
-Trained on synthetic datasets mimicking real smart meter data.
+| Feature                  | Methods / Models                      |
+|--------------------------|----------------------------------------|
+| **Data Fetching**         | ENTSO-E API via `requests`            |
+| **Preprocessing**         | Interpolation, outlier removal, feature extraction |
+| **Outage Prediction**     | `XGBoostClassifier` + `RandomizedSearchCV`         |
+| **Load Forecasting**      | `LSTM` with `RobustScaler`, `EarlyStopping`        |
+| **Anomaly Detection**     | `IsolationForest`                     |
 
-Identified anomalous consumption patterns indicating potential theft.
+---
 
-Visualized with Power BI and Python plots for intuitive inspection.
+## 🧠 Key Techniques
 
-Results:
+- Time-based interpolation & forward filling (`df.interpolate(method='time')`)
+- Feature engineering: `Hour`, `DayOfWeek`, `IsWeekend`
+- Outlier removal using Z-score (via `scipy.stats`)
+- Stateful LSTM modeling
+- RobustScaler (better handling of outliers than MinMaxScaler)
+- Grid search for XGBoost hyperparameter tuning
 
-Random Forest achieved over 93% accuracy.
+---
+this open-source project demonstrates the application of **Artificial Intelligence (AI)** in modern power systems using real-world data. It covers a complete data pipeline—from fetching **live energy data** to **outage detection**, **load forecasting**, and **anomaly detection** using advanced machine learning and deep learning models.
 
-Detected anomalies like high consumption with suspicious voltage-current mismatches.
-
-🧠 Impact: A scalable detection framework that utilities can deploy alongside smart meters to reduce revenue loss.
-
-2. Load Forecasting
-Problem: Grid stability and economic operation depend on precise demand forecasting.
-
-Our Solution:
-
-Used LSTM for deep time-series learning and Prophet for trend-seasonality modeling.
-
-Feature-rich dataset: weather, time-of-day, solar irradiance, etc.
-
-Compared performance with Random Forest (ML baseline).
-
-Results:
-
-LSTM outperformed with MAE: 19.6 kWh, MAPE: 3.5%
-
-Accurately captured seasonal fluctuations and peak hour surges.
-
-📈 Impact: Helps in energy planning, scheduling generation, and balancing intermittent renewable input.
-
-3. Load Balancing
-Problem: Imbalanced load can damage transformers, increase losses, and cause voltage instability.
-
-Our Solution:
-
-Applied Q-Learning to optimize load dispatch actions based on grid states.
-
-Integrated Fuzzy Logic for rule-based decision making.
-
-Used Genetic Algorithms (GA) for load pattern optimization.
-
-Results:
-
-Overload events reduced by 67% using Q-learning.
-
-GA minimized transmission losses by 12%.
-
-Visual dashboards highlighted real-time surplus/deficit zones.
-
-🛠️ Impact: A decision-support engine for Distribution Control Centers and microgrid operators.
-
-4. Load Outage Prediction
-Problem: Unexpected outages lead to economic and operational disruptions.
-
-Our Solution:
-
-Trained models like Random Forest and Isolation Forest on enriched data: transformer temperature, current-voltage deviations, weather, fault history.
-
-Engineered features like ΔI/Δt, time since last maintenance, and equipment stress indexes.
-
-Results:
-
-Achieved 90%+ precision in outage prediction.
-
-Enabled preventive maintenance by flagging at-risk components.
-
-💡 Impact: Moves utilities from a reactive to a proactive maintenance approach—key for smart grid reliability.
-
-🧰 Tools & Technologies
-Languages: Python
-
-Libraries: Scikit-learn, TensorFlow/Keras, Prophet, Seaborn, Matplotlib
-
-Platforms: Jupyter Notebook, Power BI
-
-Algorithms: Random Forest, Isolation Forest, SVM, LSTM, Prophet, Q-Learning, Fuzzy Logic, Genetic Algorithms
-
-📊 Evaluation Metrics
-Each module was evaluated using relevant metrics such as:
-
-Classification: Accuracy, Precision, Recall, F1-Score, ROC-AUC
-
-Forecasting: MAE, RMSE, MAPE
-
-Optimization: Loss reduction %, load variance
-
-Visualization: Time-series plots, heatmaps, confusion matrices
-
-💭 Key Takeaways
-AI is no longer a theoretical tool—it is practically deployable in utility operations.
-
-Smart grid resilience can be significantly enhanced through proactive, AI-driven systems.
-
-With real-time data integration, these models can scale into full-fledged intelligent grid systems.
-
-📌 Challenges Faced
-Limited access to real-world smart meter data (solved via synthetic data generation).
-
-Need for modular, interpretable ML models for field deployability.
-
-Ensuring low-latency inference for real-time applications like load balancing.
-
-🚀 Future Scope
-Integration with SCADA and IoT sensors for real-time grid interaction.
-
-Blockchain-based secure energy sharing among microgrids.
-
-Deployment on edge devices for localized prediction and action.
-
-Hybrid DL models combining CNN+LSTM for spatio-temporal insights.
